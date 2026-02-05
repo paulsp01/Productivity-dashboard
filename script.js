@@ -50,6 +50,18 @@ currrenttasks.forEach(function (elem,id) {
             allTasks.innerHTML=sum;
 })
 
+var markCompletedbtn=document.querySelectorAll(" .btns .mark");
+markCompletedbtn.forEach(function(btn){
+btn.addEventListener("click", function(){
+
+currrenttasks.splice(btn.id,1);
+console.log(currrenttasks);
+renderTask();
+
+
+})
+})  
+
 }
 
 renderTask();
@@ -65,29 +77,47 @@ form.addEventListener("submit", function (e) {
   currrenttasks.push({task:formInput.value,details:taskDetailInput.value,imp:checkbox.checked});
   renderTask();
    localStorage.setItem("currenttasks",JSON.stringify(currrenttasks) );
-  // checkbox.checked='';
-  // formInput.value='';
-  // taskDetailInput.value='';
+  checkbox.checked='';
+  formInput.value='';
+  taskDetailInput.value='';
 
-  location.reload();
+
  
 });
-
-
-
-var markCompletedbtn=document.querySelectorAll(" .btns .mark");
-markCompletedbtn.forEach(function(btn){
-btn.addEventListener("click", function(){
-
-currrenttasks.splice(btn.id,1);
-console.log(currrenttasks);
-renderTask();
- location.reload();
-
-})
-})  
-
-
 }
 
 ToDoList();
+
+function dailyPlanner(){
+  var dayPlanData=JSON.parse(localStorage.getItem('dayPlandata'))||{};
+console.log(dayPlanData);
+var dayPlanner=document.querySelector(".day-planner");
+
+var hours=Array.from({length:18},function(_,idx){
+return `${6+idx}:00-${7+idx}:00`;
+})
+
+
+var wholeSumDay='';
+
+hours.forEach(function(hour,id){
+  var savedData=dayPlanData[id]||'';
+  wholeSumDay=wholeSumDay+` <div class="day-planner-time">
+            <p>${hour}</p>
+            <input id=${id} type="text" placeholder="..." value=${savedData}>
+          </div>`
+
+          dayPlanner.innerHTML=wholeSumDay;
+});
+
+var daysInput=document.querySelectorAll(".day-planner .day-planner-time input");
+daysInput.forEach(function(day){
+ day.addEventListener("input",function(){
+  dayPlanData[day.id]=day.value;
+  localStorage.setItem("dayPlandata",JSON.stringify(dayPlanData));
+  
+ })
+})
+}
+
+dailyPlanner();

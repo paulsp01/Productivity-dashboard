@@ -18,6 +18,8 @@
   --sec:#9112BC;
   --trie1:#AE75DA;
   --trie2:#E9E294;
+  --green:rgb(10, 194, 10);
+  --blue:rgb(83, 83, 233);
 }
 
 * {
@@ -50,18 +52,59 @@ html, body {
   width: 100%;
   padding: 40px;
   padding-top: 80px;
+  overflow: auto;
+  position: absolute;
+}
+#main section.allitems header {
+  height: 270px;
+  width: 100%;
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzoBhUzYT7GKMi6XHFp-bpsX_qceo73l6HA&s);
+  background-position: center;
+  background-size: cover;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px;
+}
+#main section.allitems header .header1 h1 {
+  font-size: 80px;
+  font-weight: 700;
+}
+#main section.allitems header .header1 h4 {
+  font-size: 40px;
+  font-weight: 500;
+}
+#main section.allitems header .header1 h2 {
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+#main section.allitems header .header2 h2 {
+  font-size: 40px;
+  font-weight: 700;
+}
+#main section.allitems header .header2 h4 {
+  font-size: 30px;
+  font-weight: 500;
+}
+#main section.allitems header .header2 h3 {
+  font-size: 15px;
+  font-weight: 500;
+  opacity: 0.8;
+}
+#main section.allitems .allFeatures {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
   gap: 40px;
-  position: absolute;
 }
 #main .elem {
   background-color: rgb(244, 228, 6);
   box-shadow: 0px 0px 5px 5px goldenrod;
   font-size: 30px;
-  height: 400px;
+  height: 270px;
   width: 250px;
   border-radius: 20px;
   overflow: hidden;
@@ -292,4 +335,134 @@ html, body {
   top: 12%;
   left: 1%;
   font-size: 15px;
+}
+#main section.moti-fullpage {
+  position: relative;
+}
+#main section.moti-fullpage .moti-fullpage-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#main section.moti-fullpage .moti-fullpage-container .moti-container {
+  height: 500px;
+  width: 80%;
+  position: relative;
+  border-radius: 50px;
+}
+#main section.moti-fullpage .moti-fullpage-container .moti-container::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border-radius: 50px;
+  scale: 1.15;
+  background-color: var(--pri);
+  z-index: 8;
+  filter: blur(70px);
+}
+#main section.moti-fullpage .moti-fullpage-container .moti-container .moti-wrapper {
+  z-index: 10;
+  position: absolute;
+  width: 100%;
+  background-color: var(--trie2);
+  border: 3px solid var(--sec);
+  border-radius: 40px;
+  padding: 15px;
+}
+#main section.moti-fullpage .moti-fullpage-container .moti-container .moti-wrapper img {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  opacity: 0.3;
+  height: 120px;
+}
+#main section.moti-fullpage .moti-fullpage-container .moti-container .moti-wrapper .moti1 {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+#main section.moti-fullpage .moti-fullpage-container .moti-container .moti-wrapper .moti1 h2 {
+  font-size: 40px;
+  font-weight: 500;
+  text-align: right;
+  padding: 30px;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 30px;
+  background-color: var(--trie1);
+}
+#main section.moti-fullpage .moti-fullpage-container .moti-container .moti-wrapper .moti2 {
+  padding: 10px;
+}
+#main section.moti-fullpage .moti-fullpage-container .moti-container .moti-wrapper .moti2 h1 {
+  font-size: 60px;
+  font-weight: 700;
+  color: var(--sec);
+  margin-top: 20px;
+}
+#main section.moti-fullpage .moti-fullpage-container .moti-container .moti-wrapper .moti3 {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+#main section.moti-fullpage .moti-fullpage-container .moti-container .moti-wrapper .moti3 h2 {
+  font-size: 40px;
+  font-weight: 500;
+  text-align: right;
+  padding: 30px;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 30px;
+  background-color: var(--trie1);
+}
+#main section.pomo-fullpage h2 {
+  font-size: 50px;
+}
+#main section.pomo-fullpage .session {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: var(--green);
+  padding: 10px 30px;
+  font-size: 30px;
+  border-radius: 10px;
+}
+#main section.pomo-fullpage .pomo-timer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+#main section.pomo-fullpage .pomo-timer h1 {
+  font-size: 160px;
+}
+#main section.pomo-fullpage .pomo-timer button {
+  background-color: var(--trie2);
+  padding: 15px 40px;
+  font-size: 20px;
+  box-shadow: 4px 4px 0 black;
+  border-radius: 15px;
+  border: none;
+  margin: 10px;
+  transition: all ease 0.3s;
+}
+#main section.pomo-fullpage .pomo-timer button:active {
+  scale: 0.95;
+  box-shadow: 0 0 0;
+}
+#main section.pomo-fullpage .pomo-timer button.start {
+  color: blue;
+}
+#main section.pomo-fullpage .pomo-timer button.stop {
+  color: red;
+}
+#main section.pomo-fullpage .pomo-timer button.reset {
+  color: green;
 }/*# sourceMappingURL=styles.css.map */

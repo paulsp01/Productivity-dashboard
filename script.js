@@ -1,5 +1,3 @@
-
-
 function openFeature() {
   let allElem = document.querySelectorAll(".elem");
   let btn = document.querySelectorAll("button");
@@ -121,3 +119,160 @@ daysInput.forEach(function(day){
 }
 
 dailyPlanner();
+
+function motivationalQuote(){
+  
+ var motivationQuoteContent = document.querySelector('.moti2 h1')
+    var motivationAuthor = document.querySelector('.moti3 h2')
+    console.log(motivationQuoteContent);
+    console.log(motivationAuthor);
+
+   async function fetchQuote() {
+        let response = await fetch("https://dummyjson.com/quotes/random");
+
+        let data = await response.json();
+       
+        motivationQuoteContent.innerHTML = data.quote
+        motivationAuthor.innerHTML = `-${data.author}`
+    }
+
+    fetchQuote()
+
+}
+
+motivationalQuote();
+
+
+function pomodoroTimer(){
+  var interval=null;
+let timer=document.querySelector(".pomo-timer h1");
+var btnStart=document.querySelector(".start");
+var btnStop=document.querySelector(".stop");
+var btnReset=document.querySelector(".reset");
+let session=document.querySelector(".session");
+ var isWorkSession = true
+let totalsec=25*60;
+function updateTime(){
+  let mins=Math.floor(totalsec/60);
+  let secs=totalsec%60;
+  
+
+  timer.innerHTML=`${String(mins).padStart('2','0')}:${String(secs).padEnd('2','0')}`
+}
+
+
+function startTimer(){
+   clearInterval(interval)
+
+        if (isWorkSession) {
+
+            interval = setInterval(function () {
+                if (totalsec > 0) {
+                    totalsec--
+                    updateTime()
+                } else {
+                    isWorkSession = false
+                    clearInterval(interval)
+                    timer.innerHTML = '05:00'
+                    session.innerHTML = 'Take a Break'
+                    session.style.backgroundColor = 'var(--blue)'
+                    totalsec = 5 * 60;
+                }
+            }, 1000)
+        } else {
+
+
+            interval = setInterval(function () {
+                if (totalsec > 0) {
+                    totalsec--
+                    updateTime()
+                } else {
+                    isWorkSession = true
+                    clearInterval(interval)
+                    timer.innerHTML = '25:00'
+                    session.innerHTML = 'Work Session'
+                    session.style.backgroundColor = 'var(--green)'
+                    totalsec = 25 * 60
+                }
+            }, 1000)
+        }
+
+  btnStart.innerHTML="Start"
+}
+
+function stopTimer(){
+  clearInterval(interval);
+  btnStart.innerHTML="Resume"
+}
+
+function resetTimer(){
+   totalsec=25*60;
+  clearInterval(interval);
+  updateTime();
+ 
+}
+
+btnStart.addEventListener("click",startTimer);
+btnStop.addEventListener("click",stopTimer);
+btnReset.addEventListener("click",resetTimer) 
+}
+
+pomodoroTimer();
+
+
+
+let apiKey='fb7433b5be9e49b0a54162056260702';
+var city='Kolkata'
+ var header1Time = document.querySelector('.header1 h1')
+    var header1Date = document.querySelector('.header1 h2')
+    var header2Temp = document.querySelector('.header2 h2')
+    var header2Condition = document.querySelector('.header2 h4')
+    var precipitation = document.querySelector('.header2 .precipitation')
+    var humidity = document.querySelector('.header2 .humidity')
+    var wind = document.querySelector('.header2 .wind')
+
+    var data = null
+async function weatherApi(){
+  let res=await fetch(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`)
+ var data=await res.json();
+   
+  header2Temp.innerHTML = `${data.current.temp_c}°C`
+        header2Condition.innerHTML = `${data.current.condition.text}`
+        wind.innerHTML = `Wind: ${data.current.wind_kph} km/h`
+        humidity.innerHTML = `Humidity: ${data.current.humidity}%`
+        precipitation.innerHTML = `Heat Index : ${data.current.heatindex_c}%`
+ console.log(data);
+}
+weatherApi();
+
+ function timeDate() {
+        const totalDaysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        var date = new Date()
+        console.log(date)
+        var dayOfWeek = totalDaysOfWeek[date.getDay()]
+        var hours = date.getHours()
+        var minutes = date.getMinutes()
+        var seconds = date.getSeconds()
+        var tarik = date.getDate()
+        var month = monthNames[date.getMonth()]
+        var year = date.getFullYear()
+
+        header1Date.innerHTML = `${tarik} ${month}, ${year}`
+
+        if (hours > 12) {
+            header1Time.innerHTML = `${dayOfWeek}, ${String(hours - 12).padStart('2', '0')}:${String(minutes).padStart('2', '0')}:${String(seconds).padStart('2', '0')} PM`
+
+        } else {
+            header1Time.innerHTML = `${dayOfWeek}, ${String(hours).padStart('2', '0')}:${String(minutes).padStart('2', '0')}:${String(seconds).padStart('2', '0')} AM`
+        }
+    }
+
+   
+    setInterval(() => {
+        timeDate()
+    }, 1000);

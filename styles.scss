@@ -22,6 +22,11 @@
     --trie2:#E9E294;
     --green:rgb(10, 194, 10);
     --blue:rgb(83, 83, 233);
+    --black:black;
+    --red:red;
+    --goldenrod:goldenrod;
+    --deeppurple:rgb(70, 3, 70);
+
 
 }
 
@@ -45,10 +50,69 @@ html,body{
     color:var(--pri);
 
 nav{
-    position:fixed;
-    width: 100%;
+   position: fixed;
+    top: 0;
+    z-index: 99;
     height: 60px;
+    width: 100%;
+    
+   
+    
+
+    .nav-in {
+    
+    display: -webkit-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
     background-color: var(--trie2);
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 4px 30px;
+   
+    h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--deeppurple);
+}
+
+ .theme {
+
+    background-color: var(--pri);
+    padding: 6px 15px;
+    border-radius: 10px;
+    -webkit-transition: all ease 0.2s;
+    -o-transition: all ease 0.2s;
+    transition: all ease 0.2s;
+    cursor: pointer;
+
+    h4 {
+    color: var(--deeppurple);
+    font-weight: 700;
+    font-size: 20px;
+    pointer-events: none;
+}
+
+&:active {
+    scale: 0.96;
+}
+
+}
+
+
+}
+
+ 
+
+
+
+
+
 }
 
 section.allitems{
@@ -116,8 +180,8 @@ section.allitems{
 }
 
 .elem{
-    background-color: rgb(244, 228, 6);
-    box-shadow: 0px 0px 5px 5px goldenrod;
+    // background-color: rgb(244, 228, 6);
+    box-shadow: 0px 0px 5px 5px var(--goldenrod);
     font-size: 30px;
     height: 270px;
     width: 250px;
@@ -167,7 +231,7 @@ section.fullelem{
         background-color: transparent;
         border-radius: 50%;
         font-size: 30px;
-        box-shadow: 0 0 12px 12px rgb(181, 120, 221);
+        box-shadow: 0 0 12px 12px var(--trie1);
         position: absolute;
         right: 5%;
         top:5%;
@@ -247,7 +311,7 @@ section.todo-fullpage{
 
 
                 &::placeholder{
-                    color: rgba(76, 3, 75, 0.611);
+                    color: var(--deeppurple);
                     font-weight: 100;
                 }
             }
@@ -263,7 +327,7 @@ section.todo-fullpage{
                 outline: none;
                 margin-bottom: 20px;
                  &::placeholder{
-                    color: rgba(60, 5, 65, 0.611);
+                    color: var(--deeppurple);
                     font-weight: 100;
                 }
             }
@@ -273,7 +337,7 @@ section.todo-fullpage{
                 width: 100%;
                 font-size: 25px;
                 font-weight: 600;
-                background-color: rgb(252, 228, 11);
+                background-color: var(--trie2);
                 border-radius: 6px;
                 color: var(--trie1);
                 transition: all ease 0.5s;
@@ -324,7 +388,7 @@ section.todo-fullpage{
                 gap:10px;
 
                 span{
-                 background-color: red;
+                 background-color:var(--red);
                  color:var(--pri);
                  font-size: 10px;
                  padding: 3px 5px;
@@ -342,13 +406,13 @@ section.todo-fullpage{
             }
 
             .mark{
-                background-color: green;
+                background-color: var(--green);
                 padding: 10px;
                 border-radius: 10px;
                 border:none
             }
             .delete{
-                background-color: red;
+                background-color: var(--red);
                 padding: 10px;
                 border-radius: 10px;
                 border:none
@@ -547,7 +611,7 @@ section.pomo-fullpage{
             background-color: var(--trie2);
             padding: 15px 40px;
             font-size: 20px;
-            box-shadow: 4px 4px 0 black;
+            box-shadow: 4px 4px 0 var(--black);
             border-radius: 15px;
             border: none;
             margin: 10px;
@@ -575,4 +639,6 @@ section.pomo-fullpage{
    
 }
 
-
+.fullelem{
+    margin-top: 30px;
+}

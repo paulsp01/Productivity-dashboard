@@ -20,6 +20,10 @@
   --trie2:#E9E294;
   --green:rgb(10, 194, 10);
   --blue:rgb(83, 83, 233);
+  --black:black;
+  --red:red;
+  --goldenrod:goldenrod;
+  --deeppurple:rgb(70, 3, 70);
 }
 
 * {
@@ -43,9 +47,38 @@ html, body {
 }
 #main nav {
   position: fixed;
-  width: 100%;
+  top: 0;
+  z-index: 99;
   height: 60px;
+  width: 100%;
+}
+#main nav .nav-in {
+  display: flex;
   background-color: var(--trie2);
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 30px;
+}
+#main nav .nav-in h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--deeppurple);
+}
+#main nav .nav-in .theme {
+  background-color: var(--pri);
+  padding: 6px 15px;
+  border-radius: 10px;
+  transition: all ease 0.2s;
+  cursor: pointer;
+}
+#main nav .nav-in .theme h4 {
+  color: var(--deeppurple);
+  font-weight: 700;
+  font-size: 20px;
+  pointer-events: none;
+}
+#main nav .nav-in .theme:active {
+  scale: 0.96;
 }
 #main section.allitems {
   height: 100%;
@@ -101,8 +134,7 @@ html, body {
   gap: 40px;
 }
 #main .elem {
-  background-color: rgb(244, 228, 6);
-  box-shadow: 0px 0px 5px 5px goldenrod;
+  box-shadow: 0px 0px 5px 5px var(--goldenrod);
   font-size: 30px;
   height: 270px;
   width: 250px;
@@ -144,7 +176,7 @@ html, body {
   background-color: transparent;
   border-radius: 50%;
   font-size: 30px;
-  box-shadow: 0 0 12px 12px rgb(181, 120, 221);
+  box-shadow: 0 0 12px 12px var(--trie1);
   position: absolute;
   right: 5%;
   top: 5%;
@@ -201,11 +233,11 @@ html, body {
   margin-bottom: 20px;
 }
 #main section.todo-fullpage .todo-container .addTask form input#task-input::-moz-placeholder {
-  color: rgba(76, 3, 75, 0.611);
+  color: var(--deeppurple);
   font-weight: 100;
 }
 #main section.todo-fullpage .todo-container .addTask form input#task-input::placeholder {
-  color: rgba(76, 3, 75, 0.611);
+  color: var(--deeppurple);
   font-weight: 100;
 }
 #main section.todo-fullpage .todo-container .addTask form textarea {
@@ -220,11 +252,11 @@ html, body {
   margin-bottom: 20px;
 }
 #main section.todo-fullpage .todo-container .addTask form textarea::-moz-placeholder {
-  color: rgba(60, 5, 65, 0.611);
+  color: var(--deeppurple);
   font-weight: 100;
 }
 #main section.todo-fullpage .todo-container .addTask form textarea::placeholder {
-  color: rgba(60, 5, 65, 0.611);
+  color: var(--deeppurple);
   font-weight: 100;
 }
 #main section.todo-fullpage .todo-container .addTask form #btn {
@@ -232,7 +264,7 @@ html, body {
   width: 100%;
   font-size: 25px;
   font-weight: 600;
-  background-color: rgb(252, 228, 11);
+  background-color: var(--trie2);
   border-radius: 6px;
   color: var(--trie1);
   transition: all ease 0.5s;
@@ -273,7 +305,7 @@ html, body {
   gap: 10px;
 }
 #main section.todo-fullpage .todo-container .allTask .task > h5 span {
-  background-color: red;
+  background-color: var(--red);
   color: var(--pri);
   font-size: 10px;
   padding: 3px 5px;
@@ -286,13 +318,13 @@ html, body {
   opacity: 0;
 }
 #main section.todo-fullpage .todo-container .allTask .task .mark {
-  background-color: green;
+  background-color: var(--green);
   padding: 10px;
   border-radius: 10px;
   border: none;
 }
 #main section.todo-fullpage .todo-container .allTask .task .delete {
-  background-color: red;
+  background-color: var(--red);
   padding: 10px;
   border-radius: 10px;
   border: none;
@@ -447,7 +479,7 @@ html, body {
   background-color: var(--trie2);
   padding: 15px 40px;
   font-size: 20px;
-  box-shadow: 4px 4px 0 black;
+  box-shadow: 4px 4px 0 var(--black);
   border-radius: 15px;
   border: none;
   margin: 10px;
@@ -465,4 +497,8 @@ html, body {
 }
 #main section.pomo-fullpage .pomo-timer button.reset {
   color: green;
+}
+
+.fullelem {
+  margin-top: 30px;
 }/*# sourceMappingURL=styles.css.map */

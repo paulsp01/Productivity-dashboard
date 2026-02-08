@@ -221,7 +221,8 @@ pomodoroTimer();
 
 
 
-let apiKey='fb7433b5be9e49b0a54162056260702';
+function weatherFunction(){
+  let apiKey='fb7433b5be9e49b0a54162056260702';
 var city='Kolkata'
  var header1Time = document.querySelector('.header1 h1')
     var header1Date = document.querySelector('.header1 h2')
@@ -276,3 +277,43 @@ weatherApi();
     setInterval(() => {
         timeDate()
     }, 1000);
+}
+
+
+weatherFunction();
+
+
+function changeTheme() {
+
+    var theme = document.querySelector('.theme')
+    var rootElement = document.documentElement
+
+    var flag = 0
+    theme.addEventListener('click', function () {
+
+        if (flag == 0) {
+            rootElement.style.setProperty('--pri', '#F8F4E1')
+            rootElement.style.setProperty('--sec', '#222831')
+            rootElement.style.setProperty('--trie1', '#393E46')
+            rootElement.style.setProperty('--trie2', '#948979')
+            flag = 1
+        } else if (flag == 1) {
+            rootElement.style.setProperty('--pri', '#F1EFEC')
+            rootElement.style.setProperty('--sec', '#030303')
+            rootElement.style.setProperty('--trie1', '#123458')
+            rootElement.style.setProperty('--trie2', '#D4C9BE')
+            flag = 2
+        } else if (flag == 2) {
+            rootElement.style.setProperty('--pri', '#FFFCB8;')
+            rootElement.style.setProperty('--sec', '#9112BC')
+            rootElement.style.setProperty('--trie1', '#AE75DA')
+            rootElement.style.setProperty('--trie2', '#E9E294')
+            flag = 0
+        }
+
+    })
+
+
+}
+
+changeTheme()

@@ -328,6 +328,7 @@ html, body {
   padding: 10px;
   border-radius: 10px;
   border: none;
+  display: none;
 }
 #main section.daily-fullpage h2 {
   font-size: 70px;

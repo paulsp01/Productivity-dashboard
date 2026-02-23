@@ -4,7 +4,9 @@ function openFeature() {
   let el = document.querySelectorAll(".fullelem");
 
   allElem.forEach(function (elem) {
-    let eid = el[[elem.id]];
+  
+    let eid = el[elem.id];
+       
     elem.addEventListener("click", function () {
       eid.style.display = "block";
     });
@@ -53,7 +55,7 @@ markCompletedbtn.forEach(function(btn){
 btn.addEventListener("click", function(){
 
 currrenttasks.splice(btn.id,1);
-console.log(currrenttasks);
+
 renderTask();
 
 
@@ -88,7 +90,7 @@ ToDoList();
 
 function dailyPlanner(){
   var dayPlanData=JSON.parse(localStorage.getItem('dayPlandata'))||{};
-console.log(dayPlanData);
+
 var dayPlanner=document.querySelector(".day-planner");
 
 var hours=Array.from({length:18},function(_,idx){
@@ -124,8 +126,7 @@ function motivationalQuote(){
   
  var motivationQuoteContent = document.querySelector('.moti2 h1')
     var motivationAuthor = document.querySelector('.moti3 h2')
-    console.log(motivationQuoteContent);
-    console.log(motivationAuthor);
+   
 
    async function fetchQuote() {
         let response = await fetch("https://dummyjson.com/quotes/random");
@@ -242,7 +243,7 @@ async function weatherApi(){
         wind.innerHTML = `Wind: ${data.current.wind_kph} km/h`
         humidity.innerHTML = `Humidity: ${data.current.humidity}%`
         precipitation.innerHTML = `Heat Index : ${data.current.heatindex_c}%`
- console.log(data);
+
 }
 weatherApi();
 
@@ -254,7 +255,7 @@ weatherApi();
             "July", "August", "September", "October", "November", "December"
         ];
         var date = new Date()
-        console.log(date)
+      
         var dayOfWeek = totalDaysOfWeek[date.getDay()]
         var hours = date.getHours()
         var minutes = date.getMinutes()
@@ -317,3 +318,189 @@ function changeTheme() {
 }
 
 changeTheme()
+
+function updateDailyCircle(){
+
+  let total = 0;
+
+  goalPercents.forEach(p=>{
+    total += p || 0;
+  });
+
+  let average = 0;
+
+if(goalPercents.length > 0){
+  average = total / goalPercents.length;
+}
+
+average = Math.floor(average);  // 🔥 এই লাইন add করো
+
+  let circle = document.querySelector(".circle");
+  let progressText = document.getElementById("progressText");
+
+  circle.style.background =
+    `conic-gradient(#00b894 ${average}%, #ddd ${average}%)`;
+
+  progressText.innerHTML =
+    "Daily Goals " + Math.floor(average) + "%";
+}
+
+var goalPercents = [];
+
+function addGoal(){
+  
+  let currGoals=[];
+  
+  
+
+  if(localStorage.getItem("currgoal")){
+    console.log("goal is full");
+   currGoals=JSON.parse(localStorage.getItem("currgoal"));
+  }else{
+    console.log("task is empty");
+  }
+  function attachTimers(){
+
+  const allGoals = document.querySelectorAll(".gym");
+
+  allGoals.forEach((goal, index) => {
+  
+    let timerText = goal.querySelector(".timer h2");
+    let timerStart = goal.querySelector(".startT");
+    let timerStop = goal.querySelector(".stopT");
+    let done = goal.querySelector(".done");
+    let progressBar = goal.querySelector(".outin");
+
+    let second = 0;
+    let interval = null;
+
+    let targetMinutes = parseInt(currGoals[index].duration);
+    let targetSeconds = targetMinutes * 60;
+
+    function updateTime(){
+      let mins = Math.floor(second / 60);
+      let secs = second % 60;
+
+      timerText.innerHTML =
+        String(mins).padStart(2, "0") + ":" +
+        String(secs).padStart(2, "0");
+    }
+
+    function updateProgress(){
+      let percent = (second / targetSeconds) * 100;
+     
+      if(percent > 100){
+        percent = 100;
+      }
+    
+      goalPercents[index] = percent;
+updateDailyCircle();
+      progressBar.style.width = percent + "%";
+      progressBar.innerHTML = Math.floor(percent) + "%";
+    }
+
+    timerStart.addEventListener("click", ()=>{
+
+      if(interval != null) return;
+
+      interval = setInterval(()=>{
+        second++;
+        updateTime();
+        updateProgress();
+      },10);
+
+    });
+
+    timerStop.addEventListener("click", ()=>{
+
+      clearInterval(interval);
+
+      let totalMin = Math.floor(second / 60);
+      done.innerHTML = `✅ Done: ${totalMin} min`;
+
+      interval = null;
+      second = 0;
+      updateTime();
+    });
+
+  });
+
+}
+
+  function renderGoal(){
+    let list=document.querySelector(".bottom .list ");
+    let currGoal=localStorage.setItem("currgoal", JSON.stringify(currGoals));
+    console.log(list);
+   
+    let sum='';
+    currGoals.forEach(function(item,id){
+      sum+=`
+      <div class=gym>
+          <img src=${item.img}>
+         <div class="timer">
+           <h2>00:00</h2>
+           <button class="startT">Start</button>
+           <button class="stopT">Stop</button>
+         </div>
+         <div class="heading">
+           <h1>${item.name}</h1>
+          <div class="outer">
+            <div class="outin">0%</div>
+          </div>
+         </div>
+        
+          <div class="time-info">
+  <p class="plan">⏰ Plan: ${item.time}</p>
+  <p class="done">✅ Done: 0 min</p>
+</div>
+          <label>
+  <input type="checkbox" />
+ <h3>${item.duration} min</h3>
+</label>
+</div>
+`
+
+ 
+
+    })
+list.innerHTML=sum;
+    attachTimers();
+
+  }
+
+renderGoal()
+  let form=document.querySelector(".input .goal-form");
+  let goalName=document.querySelector(".goal-form .goal-name");
+  let goalTime=document.querySelector(".goal-form .goal-time");
+  let goalDuration=document.querySelector(".goal-form .goal-duration");
+  let goalImg=document.querySelector(".goal-form .goal-img");
+
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    currGoals.push({name:goalName.value,time:goalTime.value,duration:goalDuration.value,img:goalImg.value});
+    renderGoal();
+    goalName.value='';
+    goalDuration.value="";
+    goalTime.value="";
+    goalImg.value="";
+  })
+
+}
+
+addGoal();
+
+
+function setCurrentDate(){
+
+  let today = new Date();
+
+  let day = String(today.getDate()).padStart(2, "0");
+  let month = String(today.getMonth() + 1).padStart(2, "0");
+  let year = today.getFullYear();
+
+  let formattedDate = `${day}-${month}-${year}`;
+
+  document.getElementById("currentDate").innerText = formattedDate;
+}
+
+setCurrentDate();

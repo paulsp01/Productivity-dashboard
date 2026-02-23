@@ -124,7 +124,119 @@
      </section>
 
       <section class="fullelem goal-fullpage">
-        <h1>Daily goals</h1>
+       
+        <div class="plan">
+          <h2>Plan your day and finish strong</h2>
+         <h2 id="currentDate"></h2>
+        </div>
+        <div class="circle">
+          <div class="inner">
+            <h4 id="progressText">Daily Goals 70%</h4>
+            
+          </div>
+
+        </div>
+        <div class="input">
+  <form class="goal-form">
+   
+
+    
+    <input 
+      type="text" 
+      class="goal-name"
+      placeholder="Enter daily goal (ex: Gym / Study)"
+      required
+    />
+
+    <input 
+      type="time" 
+      class="goal-time"
+      required
+    />
+
+    <input 
+      type="number" 
+      class="goal-duration"
+      placeholder="Duration (min)"
+      min="1"
+      required
+    />
+     <input 
+      type="text" 
+      class="goal-img"
+      placeholder="Paste Image URL"
+     
+    />
+    <button type="submit">Add</button>
+  </form>
+</div>
+
+      <div class="bottom">
+         <div class="list" id="goalList">
+        <div class="gym">
+          <img src="data:image/jpeg;base64,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" alt="">
+
+         <div class="timer">
+           <h2>00:00</h2>
+           <button class="startT">Start</button>
+           <button class="stopT">Stop</button>
+         </div>
+         <div class="heading">
+           <h1>Gym</h1>
+          <div class="outer">
+            <div class="outin">70%</div>
+          </div>
+         </div>
+        
+          <div class="time-info">
+  <p class="plan">⏰ Plan: 7:00 PM</p>
+  <p class="done">✅ Done: 35 min</p>
+</div>
+          <label>
+  <input type="checkbox" />
+ <h3>1h</h3>
+</label>
+</div>
+
+</div>
+
+
+        <div class="achiv">
+  <h2 class="achiv-title">🏆 Achievements</h2>
+
+  <!-- Tabs -->
+  <div class="achiv-tabs">
+    <button class="tab active">Weekly</button>
+    <button class="tab">Monthly</button>
+    <button class="tab">Yearly</button>
+  </div>
+
+  <!-- Badges -->
+  <div class="badges">
+    <div class="badge silver">
+      <h3>🥈 Silver</h3>
+      <p>3 workouts</p>
+    </div>
+
+    <div class="badge gold">
+      <h3>🥇 Gold</h3>
+      <p>7 workouts</p>
+    </div>
+
+    <div class="badge diamond">
+      <h3>💎 Diamond</h3>
+      <p>15 workouts</p>
+    </div>
+  </div>
+
+  <div class="badge-requirements">
+    <p><strong>Silver</strong>: To complete the Silver badge you need to complete 3 goals.</p>
+    <p><strong>Gold</strong>: To complete the Gold badge you need to complete 7 goals.</p>
+    <p><strong>Diamond</strong>: To complete the Diamond badge you need to complete 15 goals.</p>
+  </div>
+
+  <h1>You achieved 1 silver badge!</h1>
+      </div>
         <button class="btn1" id="4"><i class="ri-close-large-line"></i></button>
      </section>
     </div>

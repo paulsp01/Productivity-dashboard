@@ -499,7 +499,6 @@ html, body {
   color: green;
 }
 #main section.goal-fullpage {
-  display: block;
   position: relative;
 }
 #main section.goal-fullpage .input {
